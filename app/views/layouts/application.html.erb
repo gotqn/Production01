@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>korektivekspres.bg</title>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+
+<nav class='navbar navbar-inverse navbar-fixed-top' role='navigation'>
+  <div class='container'>
+
+    <!-- brand and toggle get grouped for better mobile display -->
+    <div class='navbar-header'>
+      <button type='button' data-target='#navbarCollapse' data-toggle='collapse' class='navbar-toggle'>
+        <span class='sr-only'>Toggle navigation</span>
+        <span class='icon-bar'></span>
+        <span class='icon-bar'></span>
+        <span class='icon-bar'></span>
+      </button>
+      <%= link_to 'korektivekspres.bg', root_path, class: 'navbar-brand' %>
+    </div>
+
+    <div id='navbarCollapse' class='collapse navbar-collapse navbar-inverse'>
+      <!-- Collection of nav links and other content for toggling -->
+      <ul class='nav navbar-nav'>
+        <li class='<%= 'active' if current_page?(root_path) %>'><%= link_to 'Home', root_path %></li>
+        <li class='<%= 'active' if current_page?(articles_path) %>'><%= link_to 'Articles', articles_path %></li>
+        <% if can? :manage, User %>
+            <li class='<%= 'active' if current_page?(users_path) %>'><%= link_to 'Users', users_path %></li>
+        <% end %>
+        <li class='<%= 'active' if current_page?(pages_path(page: 'about')) %>'><%= link_to 'About', pages_path(page: 'about') %></li>
+        <li class='<%= 'active' if current_page?(contacts_path) %>'><%= link_to 'Contacts', contacts_path %></li>
+      </ul>
+      <% if user_signed_in? %>
+          <ul class='nav navbar-nav navbar-right'>
+            <li>
+              <p class='navbar-text'>
+                <%= image_tag avatar_url(current_user), size: '20x20' %>
+                <strong>
+                  <%= link_to get_user_name_by_id(current_user.id), user_path(current_user.id) %>
+                </strong>
+              </p>
+            </li>
+            <li class='<%= 'active' if current_page?(edit_user_registration_path) %>'>
+              <%= link_to '', edit_user_registration_path, class: 'glyphicon glyphicon-wrench', title: 'Edit profile' %>
+            </li>
+            <li class='<%= 'active' if current_page?(destroy_user_session_path) %>'>
+              <%= link_to '', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-out', title: 'Logout' %>
+            </li>
+
+            <li class="locale"><div></div></li>
+            <li class="locale"><div><%= link_to_unless_current 'BG', locale: 'bg' %></div></li>
+            <li class="locale"><div><%= link_to_unless_current 'EN', locale: 'en' %></div></li>
+          </ul>
+      <% else %>
+          <ul class='nav navbar-nav navbar-right'>
+            <li class='<%= 'active' if current_page?(new_user_registration_path) %>'><%= link_to 'Sign up', new_user_registration_path %></li>
+            <li class='<%= 'active' if current_page?(new_user_session_path) %>'>
+              <%= link_to '', new_user_session_path, class: 'glyphicon glyphicon-log-in', title: 'Login' %>
+            </li>
+            <li>
+              <%= link_to '', user_facebook_omniauth_authorize_path, class: 'icon-facebook social', title: 'Login with Facebook' %>
+            </li>
+            <li>
+              <%= link_to '', user_google_oauth2_omniauth_authorize_path, class: 'icon-gplus social', title: 'Login with Google +' %>
+            </li>
+
+            <li class="locale"><div></div></li>
+            <li class="locale"><div><%= link_to_unless_current 'BG', locale: 'bg' %></div></li>
+            <li class="locale"><div><%= link_to_unless_current 'EN', locale: 'en' %></div></li>
+          </ul>
+      <% end %>
+    </div>
+  </div>
+</nav>
+
+<div class='container'>
+  <% flash.each do |name, msg| %>
+      <div class='alert alert-<%= name == 'notice' ? 'success' : 'danger' %>' role='alert'>
+        <a class='close' data-dismiss='alert'>×</a>
+        <%= msg %>
+      </div>
+  <% end %>
+
+  <%= yield %>
+
+</div>
+
+
+</body>
+</html>

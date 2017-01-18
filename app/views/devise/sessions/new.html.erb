@@ -1,0 +1,22 @@
+<div class='panel panel-default panel-short center-block'>
+  <div class='panel-heading'>Sign up</div>
+  <div class='panel-body'>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name),
+                        html: { class: 'form-vertical' },wrapper: :vertical_form) do |f| %>
+        <fieldset>
+          <%= f.input :login, autofocus: true, placeholder: 'myname-89' %>
+          <%= f.input :password, autocomplete: 'off', placeholder:'eg. X8df!90EO' %>
+          <% if devise_mapping.rememberable? -%>
+              <%= f.input :remember_me, as: :boolean, label: false, inline_label: true  %>
+          <% end -%>
+          <%= button_tag(type: 'submit', class: 'btn btn-success') do %>
+              <i class='icon-login'></i> Sign in
+          <% end %>
+        </fieldset>
+    <% end %>
+  </div>
+  <div class='panel-footer'>
+    <%= render 'devise/shared/links' %>
+  </div>
+</div>
+

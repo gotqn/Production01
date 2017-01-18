@@ -1,0 +1,53 @@
+<% if @articles.empty? %>
+    <div class="alert alert-info" role="alert">Coming soon</div>
+<% end %>
+
+<div class="row">
+
+  <% @articles.each do |article| %>
+      <div class="col-sm-6 col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <%= article.name %>
+          </div>
+          <div class="panel-body">
+            <div class="thumbnail">
+              <div class="thumbnail-image">
+                <%= image_tag article.image_url(:thumb) %>
+              </div>
+              <div class="caption">
+                <div>
+                  <%= article.description %>
+                </div>
+                <div>
+                  <%= link_to article, class: 'btn btn-success' do %>
+                      <i class='icon-list-alt'></i> Show
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% if can? :manage, Article %>
+              <div class="panel-footer">
+                <%= link_to edit_article_path(article), class: 'btn btn-warning' do %>
+                    <i class='icon-pencil'></i> Edit
+                <% end %>
+                <%= link_to article,method: :delete,data: { confirm: 'Are you sure?' },class: 'btn btn-danger' do %>
+                    <i class='icon-trash'></i> Destroy
+                <% end %>
+              </div>
+          <% end %>
+        </div>
+      </div>
+  <% end %>
+</div>
+
+<% if can? :manage, Article %>
+  <%= link_to new_article_path, class: 'btn btn-primary' do %>
+      <i class='icon-doc-add'></i> New Article
+  <% end %>
+<% end %>
+
+
+
+

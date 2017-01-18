@@ -1,0 +1,25 @@
+<%= simple_form_for(@article, html: { class: 'form-horizontal' },wrapper: :horizontal_form) do |f| %>
+    <fieldset>
+      <%= f.input :name, autofocus: true %>
+      <%= f.input :description%>
+      <%= f.input :image %>
+      <%= f.input :remote_image_url, label: 'or remote URL'%>
+      <%= f.input :content, as: :ckeditor, input_html: {ckeditor: {toolbar: 'Full'}} %>
+
+      <div class='form-group'>
+        <div class='col-sm-2'></div>
+        <div class='form-actions col-sm-9'>
+          <%= button_tag(type: 'submit', class: 'btn btn-success') do %>
+              <% if @article.new_record? %>
+                  <i class='icon-doc-add'></i> Create Article
+              <% else %>
+                  <i class='icon-edit-alt'></i> Save
+              <% end %>
+          <% end %>
+          <%= link_to articles_path, data: { confirm: 'Are you sure?' },class: 'btn btn-danger' do %>
+              <i class='icon-trash'></i> Cancel
+          <% end %>
+        </div>
+      </div>
+    </fieldset>
+<% end %>

@@ -1,0 +1,39 @@
+<div class='panel panel-primary'>
+  <div class='panel-heading'>
+    <h3 class='panel-title'><%= @article.name %></h3>
+  </div>
+  <div class='panel-body'>
+    <div class="alert alert-info" role="alert">
+      <%= @article.description %>
+    </div>
+    <div class='panel-gem'>
+      <%= @article.content.html_safe %>
+    </div>
+  </div>
+  <div class='panel-footer'>
+    <div style='display: inline-block'>
+      <strong>Created by:</strong>
+      <%= get_user_name_by_id(@article.user_id) %>
+      <br />
+      <strong>Created on:</strong>
+      <%= @article.created_at.to_date %>
+      <br />
+      <strong>Last modified on:</strong>
+      <%= @article.updated_at.to_date %>
+    </div>
+  </div>
+</div>
+
+<% if can? :update, Article %>
+    <%= link_to edit_article_path(@article), class: 'btn btn-warning' do %>
+        <i class='icon-pencil'></i> Edit
+    <% end %>
+<% end %>
+<% if can? :read, Article %>
+    <%= link_to articles_path, class: 'btn btn-default btn-primary' do %>
+        <i class='icon-left-big'></i> Back
+    <% end %>
+<% end %>
+
+
+

@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="jumbotron">
+      <iframe class="google-maps-container"
+              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyABGgy3KhRREw6bN5reyAUB79O7zr_gsNw&q=улица „7-ми Септември“ 19, силистра"
+              allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">Contact form</div>
+      <div class="panel-body">
+        <%= simple_form_for(@contact, html: { class: 'form-horizontal' },wrapper: :horizontal_form) do |f| %>
+            <fieldset>
+              <%= f.input :name, :required => true %>
+              <%= f.input :email, :required => true %>
+              <%= f.input :message, :as => :text, :required => true %>
+              <div class= "hidden">
+                <%= f.input :nickname, :hint => 'Leave this field blank!' %>
+              </div>
+
+              <div class='form-group'>
+                <div class='col-sm-2'></div>
+                <div class='form-actions col-sm-9'>
+                  <%= button_tag(type: 'submit', class: 'btn btn-success') do %>
+                      <i class='icon-doc-add'></i> Send message
+                  <% end %>
+                </div>
+              </div>
+            </fieldset>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">Concatcs</div>
+      <div class="panel-body">
+        БЪЛГАРИЯ </br>
+        гр. Силистра 7500 </br>
+        ул. "Седми Септември" No 19</br></br>
+        <b>Phone:</b> +359 897484198 </br>
+        <b>Е-mail:</b> korektivekspres@abv.bg
+      </div>
+    </div>
+  </div>
+</div>
+
