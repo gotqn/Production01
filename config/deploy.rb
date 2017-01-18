@@ -1,5 +1,5 @@
 # Change these
-server '185.123.188.98', port: 222, roles: [:web, :app, :db], primary: true
+server '185.123.188.98', roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:gotqn/Production01.git'
 set :application,     'Production01'
