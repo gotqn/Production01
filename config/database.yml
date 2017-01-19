@@ -20,8 +20,8 @@ default: &default
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  #username: gotqn
-  #password: 786pf2marakana
+  username: dbgotqn
+  password: <%= ENV['DATABASE_PASSWORD'] %>
 
 development:
   <<: *default
@@ -83,5 +83,4 @@ test:
 production:
   <<: *default
   database: Production01_production
-  username: gotqn03
-  password: <%= ENV['DEMO03_DATABASE_PASSWORD'] %>
+
