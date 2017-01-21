@@ -1,7 +1,7 @@
 # Be sure to restart your server when you modify this file.
 
 # Version of your assets, change this if you want to expire all your assets.
-Rails.application.config.assets.version = '1.3'
+Rails.application.config.assets.version = '1.4'
 
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
@@ -11,9 +11,9 @@ Rails.application.config.assets.version = '1.3'
 # Rails.application.config.assets.precompile += %w( search.js )
 
 # Images
-Rails.application.config.assets.precompile << /\.(?:png|jpg|jpeg|gif)\z/
+#Rails.application.config.assets.precompile << /\.(?:png|jpg|jpeg|gif)\z/
 
 # Fonts
-Rails.application.config.assets.precompile << /\.(?:svg|eot|woff|ttf)\z/
+#Rails.application.config.assets.precompile << /\.(?:svg|eot|woff|ttf)\z/
 
-Rails.application.config.assets.precompile += [/^[-_a-zA-Z0-9]*\..*/]
+#Rails.application.config.assets.precompile += [/^[-_a-zA-Z0-9]*\..*/]
