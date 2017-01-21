@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {omniauth_callbacks: 'omniauth_callbacks' }
 
   scope "(:locale)", locale: /en|bg/ do
-    #root to: 'welcome#index'
 
     mount Ckeditor::Engine => '/ckeditor'
 
